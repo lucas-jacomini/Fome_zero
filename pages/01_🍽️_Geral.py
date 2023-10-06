@@ -354,11 +354,16 @@ with st.container():
 
 with st.container():
     st.title("Local dos restaurantes")
-        
+    
+with st.container():
+    st.title("Local dos restaurantes")
+    st.dataframe(df1)
+
+
     #Chamando função para criar mapa
     map_ = create_map(df1)
-    
+
     # Exiba o mapa no Streamlit
-    folium_static(map_, width=1366, height=768)
+    folium_static(map_, width=1366, height=768)   
     
 
