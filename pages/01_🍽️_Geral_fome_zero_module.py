@@ -14,7 +14,7 @@ from folium.plugins import MarkerCluster
 from streamlit_folium import folium_static
 import inflection
 
-from process_data import clean_data
+#from process_data import clean_data
 
 
 
