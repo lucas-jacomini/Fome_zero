@@ -13,7 +13,7 @@ from datetime import datetime
 from streamlit_folium import folium_static
 import inflection
 
-from utils.process_data import clean_data
+#from utils.process_data import clean_data
 
 
 #==========================================================================
