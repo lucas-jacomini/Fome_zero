@@ -261,7 +261,7 @@ with st.sidebar:
     countries_filter = st.multiselect(
     'Escolha os países que deseja visualizar',
     countries, # variáreis selecionáveis
-    'Brazil', # Variáveis que iniciam no filtro
+    countries, # Variáveis que iniciam no filtro
     )
 
     #Filtro por valor
