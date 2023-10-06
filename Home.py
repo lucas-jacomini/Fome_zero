@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 
-image_path = r'images\logo.png'
+image_path = r'images/logo.png'
 image = Image.open( image_path )
 
 st.set_page_config(
@@ -18,7 +18,7 @@ st.set_page_config(
 
 with st.sidebar:
 
-    image_path = r'images\logo.png'
+    image_path = r'images/logo.png'
     image = Image.open( image_path )
     st.image( image , width= 120)
     st.divider()
