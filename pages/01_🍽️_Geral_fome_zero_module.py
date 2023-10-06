@@ -84,7 +84,7 @@ def create_custom_icon(color):
 
 #Importando Dataset
 
-RAW_DATA_PATH = r'data\raw_data\zomato.csv'
+RAW_DATA_PATH = r'data/raw_data/zomato.csv'
 
 df1 = clean_data(RAW_DATA_PATH) # Limpando Dataset com função criada.
 
@@ -93,7 +93,7 @@ df1 = clean_data(RAW_DATA_PATH) # Limpando Dataset com função criada.
 #Configurações da página
 #=====================================
 
-image_path = r'images\logo.png'
+image_path = r'images/logo.png'
 image = Image.open( image_path )
 
 st.set_page_config(
@@ -110,7 +110,7 @@ st.set_page_config(
 
 with st.sidebar:
 
-    image_path = r'images\logo.png'
+    image_path = r'images/logo.png'
     image = Image.open( image_path )
     st.image( image , width= 120)
     st.divider()
