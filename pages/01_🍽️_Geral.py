@@ -354,8 +354,7 @@ with st.container():
 
 with st.container():
     st.title("Local dos restaurantes")
-    st.dataframe(df1)
-    
+        
     #Chamando função para criar mapa
     map_ = create_map(df1)
     
