@@ -351,14 +351,9 @@ with st.container():
         quant = len(df1['cuisines'].unique())
             
         cuisines.metric('Tipos de culinária oferecida', quant)        
-
+   
 with st.container():
     st.title("Local dos restaurantes")
-    
-with st.container():
-    st.title("Local dos restaurantes")
-    st.dataframe(df1)
-
 
     #Chamando função para criar mapa
     map_ = create_map(df1)
