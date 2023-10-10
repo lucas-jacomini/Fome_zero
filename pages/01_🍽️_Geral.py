@@ -167,16 +167,17 @@ def adjust_columns_order(dataframe):
 
 def create_map (df1):
     # Criando o mapa
-    map_ = folium.Map( zoom_start=11 )
+    fig = folium.Figure(width=1920, height=1080)
+    map_ = folium.Map( max_bounds=True ).add_to(fig)
 
-    #Chamando colunas e DF auxiliar
-    columns = ['restaurant_name','city','longitude','latitude','aggregate_rating','address','cuisines','price_type', 'average_cost_for_two','currency','rating_color']
-
-    data = df1.loc[:,columns]
-    
     # Criando um cluster de marcadores
     marker_cluster = MarkerCluster().add_to(map_)
 
+    #Chamando colunas e DF auxiliar
+    columns = ['restaurant_name','city','longitude','latitude','aggregate_rating','address','cuisines','price_type', 'average_cost_for_two','currency','color_name']
+
+    data = df1.loc[:,columns]
+    
     # Adicione marcadores para cada restaurante no DataFrame
     for index, location_info in data.iterrows():
         # Concatene 'average_cost_for_two' e 'currency' na mesma linha
@@ -185,6 +186,9 @@ def create_map (df1):
         # Concatene a classificação com "/5.0" ao valor da classificação
         rating_with_suffix = f"Nota: {location_info['aggregate_rating']}/5.0"
         
+        # dá cor aos ícones
+        color = f'{location_info["color_name"]}'
+        
         #incluindo as informações no popup
         popup_html = f"<b>Restaurante:</b> {location_info['restaurant_name']}<br>"
         popup_html += f"<b>Cidade:</b> {location_info['city']}<br>"
@@ -192,29 +196,22 @@ def create_map (df1):
         popup_html += f"{rating_with_suffix}<br>"
         popup_html += f"<b>Média do prato para 2 pessoas:</b> {cost_and_currency}<br>"
         popup_html += f"<b>Endereço:</b> {location_info['address']}"
-
-        # Use a função create_custom_icon para definir o ícone com base na cor da coluna 'rating_color'
-        color_icon = create_custom_icon(location_info['rating_color'])
         
+        popup = folium.Popup(
+                            folium.Html(popup_html, script=True),
+                            max_width=500,
+                             )
+
         folium.Marker(
-            location=[location_info['latitude'], location_info['longitude']],
-            popup=folium.Popup(popup_html, max_width=300),
-            icon=color_icon
+            [location_info["latitude"], location_info["longitude"]],
+            popup=popup,
+            icon=folium.Icon(color=color, icon="home", prefix="fa"),
         ).add_to(marker_cluster)
     
     #Ajustar o zoom e a posição do mapa para incluir os marcadores, mapa inicia com zoom próximo aos marcadores   
     map_.fit_bounds(map_.get_bounds(), padding=(100, 100))
 
     return map_
-
-
-#=============================
-# Função para criar ícone personalizado  no mapa com base na cor
-def create_custom_icon(color):
-    icon = folium.Icon(color=color)
-    return icon
-
-
 
 #*************************************************************************************************************
 #===================================== INICIO ESTRUTURA LÓGICA DO CÓDIGO =====================================
@@ -271,7 +268,7 @@ with st.sidebar:
     price_filter = st.multiselect(
     'Escolha os restaurantes pelo preço',
     price, # variáreis selecionáveis
-    price, # Variáveis que iniciam no filtro
+    ['Brazil','England','Qatar','South Africa','Canada','Australia'], # Variáveis que iniciam no filtro
     )
 
     #filtro por notas
@@ -327,7 +324,8 @@ with st.container():
         quant = len(df1["restaurant_id"].unique())
         
         #mostrando as quantidades
-        restaurants.metric('Restaurantes Cadastrados',quant)
+        restaurants.metric('Restaurantes Cadastrados',
+                           f'{quant:,}'.replace(',','.'))
 
     with countries:
         # Verificando quantidade de países
@@ -344,7 +342,8 @@ with st.container():
         # Verificando quantidade de cidades
         quant = df1['votes'].sum()
             
-        ratings.metric('Avaliações feitas na plataforma', quant)
+        ratings.metric('Avaliações feitas na plataforma', 
+                       f'{quant:,}'.replace(',','.'))
     
     with cuisines:
         # Verificando quantidade de culinárias
