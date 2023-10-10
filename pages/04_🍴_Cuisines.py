@@ -414,12 +414,14 @@ with st.container(): #Primeiro container, contendo os 5 cards.
     st.subheader('',divider='gray')
 
 with st.container():
-    col1, col2 = st.columns([2,4],gap='small')
+    col1, col2 = st.columns([2,4],gap='small') #Criando colunas para delimitar o slider
 
-    with col1:
+    with col1: #SLider na coluna menor
+        #Criando slider, e gravando o resultado na variavel.
         top_n = st.select_slider(
             'Selecione a quantidade de restaurantes que deseja mostrar',
-            options=list(range(21)))   
+            options=list(range(21)),
+        value = 10)   
     
     #Título do container
     st.header(f'Top {top_n} restaurantes')
