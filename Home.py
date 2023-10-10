@@ -68,8 +68,9 @@ Para o downaload do dataset original, siga o link: https://www.kaggle.com/datase
 ---
 
 Ajuda - Entre em contao com o responsável:
-Discord: lucas.jacomini
-Email: lucasjacomini@hotmail.com
-LinkedIn: https://www.linkedin.com/in/lucas-ludwig-jacomini/
-GitHub: https://github.com/lucas-jacomini
+-**Discord**: lucas.jacomini
+-**Email**: lucasjacomini@hotmail.com
+-**LinkedIn**: https://www.linkedin.com/in/lucas-ludwig-jacomini/
+-**GitHub**: https://github.com/lucas-jacomini
+
 '''
