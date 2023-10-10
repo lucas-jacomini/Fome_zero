@@ -258,7 +258,7 @@ with st.sidebar:
     countries_filter = st.multiselect(
     'Escolha os países que deseja visualizar',
     countries, # variáreis selecionáveis
-    countries, # Variáveis que iniciam no filtro
+    ['Brazil','England','Qatar','South Africa','Canada','Australia'], # Variáveis que iniciam no filtro
     )
 
     #Filtro por valor
@@ -268,7 +268,7 @@ with st.sidebar:
     price_filter = st.multiselect(
     'Escolha os restaurantes pelo preço',
     price, # variáreis selecionáveis
-    ['Brazil','England','Qatar','South Africa','Canada','Australia'], # Variáveis que iniciam no filtro
+    price, # Variáveis que iniciam no filtro
     )
 
     #filtro por notas
