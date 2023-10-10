@@ -421,7 +421,7 @@ with st.container():
         top_n = st.select_slider(
             'Selecione a quantidade de restaurantes que deseja mostrar',
             options=list(range(21)),
-        value = 10)   
+            value = 10)   
     
     #Título do container
     st.header(f'Top {top_n} restaurantes')
