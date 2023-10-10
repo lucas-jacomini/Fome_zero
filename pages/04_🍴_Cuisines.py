@@ -249,7 +249,7 @@ def graf_top_cuisines(df1,asc=False,title = 'Melhores') :
                                                                 .mean()
                                                                 .sort_values('aggregate_rating', ascending = asc)#ascending true define os piores e False os melhores.
                                                                 .reset_index()
-                                                                .head(10)
+                                                                .head(top_n)
             )
 
     fig = px.bar(df_aux,
@@ -276,7 +276,7 @@ def graf_top_cuisines(df1,asc=False,title = 'Melhores') :
     #MOSTRANDO GRAFICO
     
     return fig
-
+    
 #*************************************************************************************************************
 #===================================== INICIO ESTRUTURA LÓGICA DO CÓDIGO =====================================
 #*************************************************************************************************************
@@ -320,7 +320,7 @@ with st.sidebar:
     countries_filter = st.multiselect(
     'Escolha os países que deseja visualizar',
     countries, # variáreis selecionáveis
-    countries, # Variáveis que iniciam no filtro
+    ['Brazil','England','Qatar','South Africa','Canada','Australia'], # Variáveis que iniciam no filtro
     )
 
     #Filtro por valor
@@ -414,18 +414,29 @@ with st.container(): #Primeiro container, contendo os 5 cards.
     st.subheader('',divider='gray')
 
 with st.container():
+    col1, col2 = st.columns([2,4],gap='small')
+
+    with col1:
+        top_n = st.select_slider(
+            'Selecione a quantidade de restaurantes que deseja mostrar',
+            options=list(range(21)))   
+    
     #Título do container
-    st.header('Top 10 restaurantes')
+    st.header(f'Top {top_n} restaurantes')
+     
+         
+        
     #Colunas que serão mostradas
     cols = ['restaurant_id','restaurant_name','country','city','cuisines','average_cost_for_two', 'currency','aggregate_rating']
     #DF para mostrar o Top 10 restaurantes
     df_aux = (df1.loc[:,cols]
                             .sort_values(['aggregate_rating','restaurant_id'], ascending=[False, True]) 
                             .reset_index(drop=True)
-                            .head(10))
+                            .head(top_n))
     st.dataframe(df_aux,) # mostrando o DF
     
     st.subheader('',divider='gray') # separador
+
 
 with st.container():
     #Título do container
