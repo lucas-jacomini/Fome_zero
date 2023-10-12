@@ -25,7 +25,7 @@ with st.sidebar:
     
 st.title('Zomato restaurants Dashboards')
 '''
-Seja bem vindo ao Dashboard dinâmico da empresa Zomato Restaurants, ps dashboards foram criados para que você possa conhecer quais restaurantes estão disponíveis e encontrar um novo lugar fazer suas refeições.
+Seja bem vindo ao Dashboard dinâmico da empresa Zomato Restaurants, os dashboards foram criados para que você possa conhecer quais restaurantes estão disponíveis e encontrar um novo lugar fazer suas refeições.
 Estão baseados em 4 visões importantes para o negócio: Geral, Países, Cidades e Culinárias.
 
 ## Sobre a Zomato:
